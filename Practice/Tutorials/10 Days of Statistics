@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int median(int *,int,int );
+int main() {
+    int q1,q2,q3,a[50],i,j,n,temp;
+    scanf("%d",&n);
+    for(i=0;i<n;++i)
+    scanf("%d",&a[i]);
+    for(i=0;i<n;++i){
+        for(j=0;j<n-1-i;j++){
+            if(a[j]>a[j+1]){
+            temp=a[j];
+            a[j]=a[j+1];
+            a[j+1]=temp;
+            }
+        }
+    }
+    if(n%2!=0){
+        q2=median(a,0,n-1);
+        q1=median(a,0,(n/2)-1);
+        q3=median(a,(n/2)+1,n-1);
+    }
+    else{
+        q2=median(a,0,n-1);
+        q1=median(a,0,(n/2)-1);
+        q3=median(a,(n/2),n-1);
+    }
+        printf("%d\n%d\n%d\n",q1,q2,q3);
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+
+    return 0;
+}
+int median(int b[],int i,int t){
+    int median,n;
+    n=t-i+1;
+    if(n%2==0)
+    median=(b[(i+t)/2]+b[((i+t)/2)+1])/2;
+    else
+    median=b[(i+t)/2];
+    return median;
+}
